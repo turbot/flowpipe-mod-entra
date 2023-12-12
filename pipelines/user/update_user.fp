@@ -1,5 +1,5 @@
 pipeline "update_user" {
-  title       = "Update AD User"
+  title       = "Update User"
   description = "Update Entra ID user."
 
   param "cred" {
@@ -27,7 +27,7 @@ pipeline "update_user" {
 
   step "container" "update_user" {
     image = "my-azure-image"
-    cmd   = concat(
+    cmd = concat(
       ["ad", "user", "update", "--id", param.user_id],
       param.display_name != null ? ["--display-name", param.display_name] : [],
       param.account_enabled != null ? ["--account-enabled", param.account_enabled] : [],

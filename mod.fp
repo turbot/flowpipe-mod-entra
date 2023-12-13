@@ -1,7 +1,7 @@
 mod "entra" {
   title         = "Microsoft Entra ID"
   description   = "Run pipelines to supercharge your Entra ID workflows using Flowpipe."
-  color         = "##0089D6"
+  color         = "#0089D6"
   documentation = file("./README.md")
   icon          = "/images/mods/turbot/entra.svg"
   categories    = ["access management", "public cloud"]

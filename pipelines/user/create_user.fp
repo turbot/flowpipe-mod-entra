@@ -28,7 +28,7 @@ pipeline "create_user" {
   }
 
   step "container" "create_user" {
-    image = "my-azure-image"
+    image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "user", "create", "--user-principal-name", param.user_principal_name, "--display-name", param.display_name, "--password", param.password]
 
     env = credential.azure[param.cred].env

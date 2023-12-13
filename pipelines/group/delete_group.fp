@@ -14,7 +14,7 @@ pipeline "delete_group" {
   }
 
   step "container" "delete_group" {
-    image = "my-azure-image"
+    image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "group", "delete", "--group", param.group]
 
     env = credential.azure[param.cred].env

@@ -19,7 +19,7 @@ pipeline "create_group" {
   }
 
   step "container" "create_group" {
-    image = "my-azure-image"
+    image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "group", "create", "--display-name", param.display_name, "--mail-nickname", param.mail_nickname]
 
     env = credential.azure[param.cred].env

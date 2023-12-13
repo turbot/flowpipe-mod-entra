@@ -14,7 +14,7 @@ pipeline "delete_user" {
   }
 
   step "container" "delete_user" {
-    image = "my-azure-image"
+    image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "user", "delete", "--id", param.user_id]
 
     env = credential.azure[param.cred].env

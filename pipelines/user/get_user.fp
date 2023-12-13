@@ -14,7 +14,7 @@ pipeline "get_user" {
   }
 
   step "container" "get_user" {
-    image = "my-azure-image"
+    image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "user", "show", "--id", param.user_id]
 
     env = credential.azure[param.cred].env

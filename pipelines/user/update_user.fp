@@ -26,7 +26,7 @@ pipeline "update_user" {
   }
 
   step "container" "update_user" {
-    image = "my-azure-image"
+    image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd = concat(
       ["ad", "user", "update", "--id", param.user_id],
       param.display_name != null ? ["--display-name", param.display_name] : [],

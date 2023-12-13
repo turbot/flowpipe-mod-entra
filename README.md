@@ -21,13 +21,6 @@ brew tap turbot/tap
 brew install flowpipe
 ```
 
-Clone:
-
-```sh
-git clone https://github.com/turbot/flowpipe-mod-entra.git
-cd flowpipe-mod-entra
-```
-
 ### Credentials
 
 By default, the following environment variables will be used for authentication:
@@ -54,6 +47,53 @@ For more information on credentials in Flowpipe, please see [Managing Credential
 
 ### Usage
 
+[Initialize a mod](https://www.flowpipe.io/docs/mods/index#initializing-a-mod):
+
+```sh
+mkdir my_mod
+cd my_mod
+flowpipe mod init
+```
+
+[Install the Microsoft Entra ID mod](https://www.flowpipe.io/docs/mods/mod-dependencies#mod-dependencies) as a dependency:
+
+```sh
+flowpipe mod install github.com/turbot/flowpipe-mod-entra
+```
+
+[Use the dependency](https://www.flowpipe.io/docs/mods/write-pipelines/index) in a pipeline step:
+
+```sh
+vi my_pipeline.fp
+```
+
+```hcl
+pipeline "my_pipeline" {
+
+  step "pipeline" "get_user" {
+    pipeline = entra.pipeline.get_user
+    args = {
+      user_id = "abcdef01-2345-6789"
+    }
+  }
+}
+```
+
+[Run the pipeline](https://www.flowpipe.io/docs/run/pipelines):
+
+```sh
+flowpipe pipeline run my_pipeline
+```
+
+### Developing
+
+Clone:
+
+```sh
+git clone https://github.com/turbot/flowpipe-mod-entra.git
+cd flowpipe-mod-entra
+```
+
 List pipelines:
 
 ```sh
@@ -63,26 +103,14 @@ flowpipe pipeline list
 Run a pipeline:
 
 ```sh
-flowpipe pipeline run get_user --arg user_id=12345678-1234-1234-1234-123456789012
-```
-
-You can pass in pipeline arguments as well:
-
-```sh
-flowpipe pipeline run create_user --arg user_principal_name=someuser@contoso.com --arg display_name="Some User" --arg password="SomePassword123"
+flowpipe pipeline run get_user --arg user_id=abcdef01-2345-6789
 ```
 
 To use a specific `credential`, specify the `cred` pipeline argument:
 
 ```sh
-flowpipe pipeline run get_user --arg user_id=12345678-1234-1234-1234-123456789012 --arg cred=azure_prod
+flowpipe pipeline run get_user --arg cred=azure_profile --arg user_id=abcdef01-2345-6789
 ```
-
-For more examples on how you can run pipelines, please see [Run Pipelines](https://flowpipe.io/docs/run/pipelines).
-
-### Configuration
-
-No additional configuration is required.
 
 ## Open Source & Contributing
 

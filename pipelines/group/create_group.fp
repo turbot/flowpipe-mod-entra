@@ -2,10 +2,10 @@ pipeline "create_group" {
   title       = "Create Group"
   description = "Create a group in the directory."
 
-  param "cred" {
-    type        = string
-    description = local.cred_param_description
-    default     = "default"
+  param "conn" {
+    type        = connection.azure
+    description = local.conn_param_description
+    default     = connection.azure.default
   }
 
   param "display_name" {
@@ -22,7 +22,7 @@ pipeline "create_group" {
     image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "group", "create", "--display-name", param.display_name, "--mail-nickname", param.mail_nickname]
 
-    env = credential.azure[param.cred].env
+    env = param.conn.env
   }
 
   output "group" {

@@ -6,10 +6,10 @@ pipeline "create_user" {
     type = "featured"
   }
 
-  param "cred" {
-    type        = string
-    description = local.cred_param_description
-    default     = "default"
+  param "conn" {
+    type        = connection.azure
+    description = local.conn_param_description
+    default     = connection.azure.default
   }
 
   param "user_principal_name" {
@@ -31,7 +31,7 @@ pipeline "create_user" {
     image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "user", "create", "--user-principal-name", param.user_principal_name, "--display-name", param.display_name, "--password", param.password]
 
-    env = credential.azure[param.cred].env
+    env = param.conn.env
   }
 
   output "user" {

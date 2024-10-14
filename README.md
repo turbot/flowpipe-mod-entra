@@ -109,7 +109,7 @@ flowpipe pipeline run get_user --arg user_id=abcdef01-2345-6789
 To use a specific `connection`, specify the `conn` pipeline argument:
 
 ```sh
-flowpipe pipeline run get_user --arg conn=azure_profile --arg user_id=abcdef01-2345-6789
+flowpipe pipeline run get_user --arg conn=connection.azure.azure_profile --arg user_id=abcdef01-2345-6789
 ```
 
 ## Open Source & Contributing

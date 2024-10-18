@@ -3,7 +3,7 @@ pipeline "create_user" {
   description = "Create an Entra ID user."
 
   tags = {
-    type = "featured"
+    recommended = "true"
   }
 
   param "conn" {

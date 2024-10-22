@@ -11,4 +11,10 @@ mod "entra" {
     description = "Run pipelines to supercharge your Entra ID workflows using Flowpipe."
     image       = "/images/mods/turbot/entra-social-graphic.png"
   }
+
+  require {
+    flowpipe {
+      min_version = "1.0.0"
+    }
+  }
 }

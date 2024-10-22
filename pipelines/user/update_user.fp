@@ -2,10 +2,10 @@ pipeline "update_user" {
   title       = "Update User"
   description = "Update Entra ID user."
 
-  param "cred" {
-    type        = string
-    description = local.cred_param_description
-    default     = "default"
+  param "conn" {
+    type        = connection.azure
+    description = local.conn_param_description
+    default     = connection.azure.default
   }
 
   param "user_id" {
@@ -33,7 +33,7 @@ pipeline "update_user" {
       param.account_enabled != null ? ["--account-enabled", param.account_enabled] : [],
     )
 
-    env = credential.azure[param.cred].env
+    env = param.conn.env
   }
 
   output "user" {

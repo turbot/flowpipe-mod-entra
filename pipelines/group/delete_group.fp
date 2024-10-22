@@ -2,10 +2,10 @@ pipeline "delete_group" {
   title       = "Delete Group"
   description = "Delete a group from the directory."
 
-  param "cred" {
-    type        = string
-    description = local.cred_param_description
-    default     = "default"
+  param "conn" {
+    type        = connection.azure
+    description = local.conn_param_description
+    default     = connection.azure.default
   }
 
   param "group" {
@@ -17,6 +17,6 @@ pipeline "delete_group" {
     image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "group", "delete", "--group", param.group]
 
-    env = credential.azure[param.cred].env
+    env = param.conn.env
   }
 }

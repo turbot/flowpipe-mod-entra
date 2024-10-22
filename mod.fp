@@ -4,11 +4,17 @@ mod "entra" {
   color         = "#0089D6"
   documentation = file("./README.md")
   icon          = "/images/mods/turbot/entra.svg"
-  categories    = ["access management", "public cloud"]
+  categories    = ["library", "access management", "public cloud"]
 
   opengraph {
     title       = "Microsoft Entra ID Mod for Flowpipe"
     description = "Run pipelines to supercharge your Entra ID workflows using Flowpipe."
     image       = "/images/mods/turbot/entra-social-graphic.png"
+  }
+
+  require {
+    flowpipe {
+      min_version = "1.0.0"
+    }
   }
 }

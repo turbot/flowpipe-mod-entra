@@ -2,10 +2,10 @@ pipeline "get_user" {
   title       = "Get User"
   description = "Show details for an Entra ID user."
 
-  param "cred" {
-    type        = string
-    description = local.cred_param_description
-    default     = "default"
+  param "conn" {
+    type        = connection.azure
+    description = local.conn_param_description
+    default     = connection.azure.default
   }
 
   param "user_id" {
@@ -17,7 +17,7 @@ pipeline "get_user" {
     image = "ghcr.io/turbot/flowpipe-image-azure-cli"
     cmd   = ["ad", "user", "show", "--id", param.user_id]
 
-    env = credential.azure[param.cred].env
+    env = param.conn.env
   }
 
   output "user" {
